@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,8 +17,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize the ArrayLists
-        ArrayList<String> recipeNames = new ArrayList<>(Arrays.asList(
-                "Test", "One", "Two", "Three"));
+        ArrayList<String> recipeNames = new ArrayList<>(Arrays.asList("Recipe Test", "Recipe One",
+                "Recipe Two", "Recipe Three", "Recipe Four", "Recipe Five", "Recipe Six",
+                "Recipe Seven", "Recipe Eight", "Recipe Nine", "Recipe Ten", "Recipe Eleven",
+                "Recipe Twelve", "Recipe Thirteen", "Recipe Fourteen", "Recipe Fifteen",
+                "Recipe Sixteen"));
         ArrayList<String> recipeShortDescriptions = new ArrayList<>();
         ArrayList<String> recipes = new ArrayList<>();
         ArrayList<String> images = new ArrayList<>();
