@@ -1,6 +1,7 @@
 package com.example.recipesapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private final ArrayList<String> longDescriptions;
     private final ArrayList<Integer> images;
     private LayoutInflater layoutInflater;
+    private Context context;
 
     /**
      * Constructor for our RecipeListAdapter
@@ -36,6 +38,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         this.shortDescriptions = shortDescriptions;
         this.longDescriptions = longDescriptions;
         this.images = images;
+        this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
     }
 
@@ -107,7 +110,12 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             int position = getLayoutPosition();
             String recipe = longDescriptions.get(position);
             Integer imageID = images.get(position);
-            // TODO: Add code to open the recipe in a new view here
+
+            // Create an intent and pass in the recipe and image ID
+            Intent recipeIntent = new Intent(context, RecipeActivity.class);
+            recipeIntent.putExtra("recipe", recipe);
+            recipeIntent.putExtra("image", imageID);
+            context.startActivity(recipeIntent);
         }
     }
 }
