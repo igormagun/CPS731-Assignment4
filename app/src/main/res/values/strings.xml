@@ -4,4 +4,5 @@
     <string name="description">Description</string>
     <string name="recipe_image">recipe image</string>
     <string name="recipe_text">Recipe text</string>
+    <string name="recipe_not_found">ERROR: Recipe not found.</string>
 </resources>
