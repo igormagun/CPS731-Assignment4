@@ -2,4 +2,6 @@
     <string name="app_name">Recipes App</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="recipe_image">recipe image</string>
+    <string name="recipe_text">Recipe text</string>
 </resources>

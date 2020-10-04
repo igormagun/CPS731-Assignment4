@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                 "Recipe Sixteen"));
         ArrayList<String> recipeShortDescriptions = new ArrayList<>();
         ArrayList<String> recipes = new ArrayList<>();
-        ArrayList<String> images = new ArrayList<>();
+        ArrayList<Integer> images = new ArrayList<>();
 
         // Fill the lists of short descriptions, recipes, and images
         for (int i = 0; i < recipeNames.size(); i++) {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             // TODO: Replace with longer recipe text
             recipes.add("");
             // TODO: Replace with real image IDs
-            images.add("");
+            images.add(R.drawable.banana);
         }
 
         // Create the RecylerView and corresponding adapter

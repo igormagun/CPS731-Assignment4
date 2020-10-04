@@ -18,7 +18,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private final ArrayList<String> recipeNames;
     private final ArrayList<String> shortDescriptions;
     private final ArrayList<String> longDescriptions;
-    private final ArrayList<String> images;
+    private final ArrayList<Integer> images;
     private LayoutInflater layoutInflater;
 
     /**
@@ -26,11 +26,11 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
      * @param recipeNames The array of recipe names
      * @param shortDescriptions The array of short descriptions for the recipes
      * @param longDescriptions The array of long descriptions, containing the actual recipes
-     * @param images The array of image names, used to display the images
+     * @param images The array of image IDs, used to display the images
      * @param context The app Context
      */
     public RecipeListAdapter(ArrayList<String> recipeNames, ArrayList<String> shortDescriptions,
-                             ArrayList<String> longDescriptions, ArrayList<String> images,
+                             ArrayList<String> longDescriptions, ArrayList<Integer> images,
                              Context context) {
         this.recipeNames = recipeNames;
         this.shortDescriptions = shortDescriptions;
@@ -106,7 +106,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         public void onClick(View v) {
             int position = getLayoutPosition();
             String recipe = longDescriptions.get(position);
-            String image = images.get(position);
+            Integer imageID = images.get(position);
             // TODO: Add code to open the recipe in a new view here
         }
     }
