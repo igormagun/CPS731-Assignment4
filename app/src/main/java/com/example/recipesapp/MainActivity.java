@@ -2,6 +2,7 @@ package com.example.recipesapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,14 +22,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Context context = this;
 
-        // TODO: Play the audio
+        // Create the MediaPlayer and start playing audio
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.cooking);
+        mediaPlayer.start();
 
         // Schedule the TimerTask that will stop the audio and switch activities
         Timer timer = new Timer();
         TimerTask switchActivities = new TimerTask() {
             @Override
             public void run() {
-                // TODO: Stop playing the audio
+                mediaPlayer.stop();
                 finish();
                 startActivity(new Intent(context, RecipeListActivity.class));
             }
