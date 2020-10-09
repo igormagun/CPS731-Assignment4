@@ -2,6 +2,7 @@ package com.example.recipesapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private final ArrayList<Integer> images;
     private LayoutInflater layoutInflater;
     private Context context;
+    private boolean mTwoPane;
+    private RecipeListActivity parentActivity;
 
     /**
      * Constructor for our RecipeListAdapter
@@ -29,17 +32,21 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
      * @param shortDescriptions The array of short descriptions for the recipes
      * @param longDescriptions The array of long descriptions, containing the actual recipes
      * @param images The array of image IDs, used to display the images
+     * @param mTwoPane Indicates if the Master/Detail flow is displaying two templates
      * @param context The app Context
      */
-    public RecipeListAdapter(ArrayList<String> recipeNames, ArrayList<String> shortDescriptions,
+    public RecipeListAdapter(RecipeListActivity parent, ArrayList<String> recipeNames,
+                             ArrayList<String> shortDescriptions,
                              ArrayList<String> longDescriptions, ArrayList<Integer> images,
-                             Context context) {
+                             boolean mTwoPane, Context context) {
         this.recipeNames = recipeNames;
         this.shortDescriptions = shortDescriptions;
         this.longDescriptions = longDescriptions;
         this.images = images;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        this.mTwoPane = mTwoPane;
+        parentActivity = parent;
     }
 
     /**
@@ -111,11 +118,26 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             String recipe = longDescriptions.get(position);
             Integer imageID = images.get(position);
 
-            // Create an intent and pass in the recipe and image ID
-            Intent recipeIntent = new Intent(context, RecipeActivity.class);
-            recipeIntent.putExtra("recipe", recipe);
-            recipeIntent.putExtra("image", imageID);
-            context.startActivity(recipeIntent);
+            if (mTwoPane) {
+                // TODO: Implement two-pane functionality
+                Bundle arguments = new Bundle();
+                // arguments.putString(RecipeDetailFragment.ARG_ITEM_ID, item.id);
+                RecipeDetailFragment fragment = new RecipeDetailFragment();
+                fragment.setArguments(arguments);
+                parentActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.recipe_detail_container, fragment)
+                        .commit();
+            } else {
+                // Create an intent and pass in the recipe and image ID
+                Intent recipeIntent = new Intent(context, RecipeActivity.class);
+                recipeIntent.putExtra("recipe", recipe);
+                recipeIntent.putExtra("image", imageID);
+                context.startActivity(recipeIntent);
+            }
+
+
+
+
         }
     }
 }

@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the RecylerView and corresponding adapter
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        RecipeListAdapter listAdapter = new RecipeListAdapter(recipeNames, recipeShortDescriptions,
-                recipes, images, this);
+        //RecipeListAdapter listAdapter = new RecipeListAdapter(recipeNames, recipeShortDescriptions,
+                //recipes, images, this);
 
         // Set the adapter and layout manager for the RecyclerView
-        recyclerView.setAdapter(listAdapter);
+        //recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
