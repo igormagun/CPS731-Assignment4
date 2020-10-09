@@ -121,8 +121,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             if (mTwoPane) {
                 Bundle arguments = new Bundle();
                 arguments.putString(RecipeDetailFragment.RECIPE_DESCRIPTION, recipe);
-                arguments.putString(RecipeDetailFragment.RECIPE_NAME,
-                        recipeTitleView.getText().toString());
+                arguments.putInt(RecipeDetailFragment.IMAGE, imageID);
                 RecipeDetailFragment fragment = new RecipeDetailFragment();
                 fragment.setArguments(arguments);
                 parentActivity.getSupportFragmentManager().beginTransaction()
@@ -131,8 +130,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             } else {
                 // Create an intent and pass in the recipe and image ID
                 Intent recipeIntent = new Intent(context, RecipeActivity.class);
-                recipeIntent.putExtra("recipe", recipe);
-                recipeIntent.putExtra("image", imageID);
+                recipeIntent.putExtra(RecipeDetailFragment.RECIPE_DESCRIPTION, recipe);
+                recipeIntent.putExtra(RecipeDetailFragment.IMAGE, imageID);
                 context.startActivity(recipeIntent);
             }
         }
