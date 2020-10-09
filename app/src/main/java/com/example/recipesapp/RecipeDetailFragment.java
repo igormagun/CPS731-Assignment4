@@ -18,15 +18,16 @@ import com.example.recipesapp.dummy.DummyContent;
  */
 public class RecipeDetailFragment extends Fragment {
     /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
+     * The fragment argument representing the content to be displayed
      */
-    public static final String ARG_ITEM_ID = "item_id";
+    public static final String RECIPE_NAME = "recipe_name";
+    public static final String RECIPE_DESCRIPTION = "recipe";
 
     /**
-     * The dummy content this fragment is presenting.
+     * The content to be displayed
      */
-    private DummyContent.DummyItem mItem;
+    private String recipeName;
+    private String recipe;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -39,16 +40,18 @@ public class RecipeDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        assert getArguments() != null;
+        if (getArguments().containsKey(RECIPE_NAME)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            recipeName = getArguments().getString(RECIPE_NAME);
+            recipe = getArguments().getString(RECIPE_DESCRIPTION);
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                appBarLayout.setTitle(recipeName);
             }
         }
     }
@@ -59,8 +62,8 @@ public class RecipeDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.recipe_detail, container, false);
 
         // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.recipe_detail)).setText(mItem.details);
+        if (recipe != null) {
+            ((TextView) rootView.findViewById(R.id.recipe_detail)).setText(recipe);
         }
 
         return rootView;

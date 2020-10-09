@@ -119,9 +119,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             Integer imageID = images.get(position);
 
             if (mTwoPane) {
-                // TODO: Implement two-pane functionality
                 Bundle arguments = new Bundle();
-                // arguments.putString(RecipeDetailFragment.ARG_ITEM_ID, item.id);
+                arguments.putString(RecipeDetailFragment.RECIPE_DESCRIPTION, recipe);
+                arguments.putString(RecipeDetailFragment.RECIPE_NAME,
+                        recipeTitleView.getText().toString());
                 RecipeDetailFragment fragment = new RecipeDetailFragment();
                 fragment.setArguments(arguments);
                 parentActivity.getSupportFragmentManager().beginTransaction()
@@ -134,10 +135,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
                 recipeIntent.putExtra("image", imageID);
                 context.startActivity(recipeIntent);
             }
-
-
-
-
         }
     }
 }
